@@ -4,6 +4,7 @@ import com.itspace.blog.models.Post;
 import com.itspace.blog.repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,5 +96,10 @@ public class BlogController {
         post.ifPresent(res::add);
         postRepository.delete(res.get(0));
         return "redirect:/blog";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model){
+        return "login";
     }
 }
